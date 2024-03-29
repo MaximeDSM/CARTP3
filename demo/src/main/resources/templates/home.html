@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <h1>TP3 - Akka</h1>
+        <h2>Initialisation des acteurs Akka</h2>
+        <form action="/akka/initialisation" method="POST">
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+        <h2>Fichier à analyser</h2>
+        <form action="/akka/file" method="POST">
+            <div>
+                <label for="chosenFile">Fichier : </label>
+                <input type="file" value="Choose file" name="chosenFile"/>
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+        <h2>Résultat</h2>
+        <form action="/akka/result" method="POST">
+            <div>
+                <label for="result">Mot : </label>
+                <input type="text" name="result"/>
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </body>
+</html>
