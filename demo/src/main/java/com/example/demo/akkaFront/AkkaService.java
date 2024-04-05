@@ -6,5 +6,7 @@ public interface AkkaService {
     boolean openFile (File file);
     String readLine ();
     boolean closeFile();
-    boolean initialize();
+    void splitFile (String fileName);
+    void initialize(int nbMapper, int nbReducer);
+    Integer getOccurencies (String word);
 }

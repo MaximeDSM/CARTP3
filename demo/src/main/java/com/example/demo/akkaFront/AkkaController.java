@@ -4,13 +4,11 @@ import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.example.demo.akka.MapperActor;
-import com.example.demo.akka.ReducerActor;
 
 @Controller
 @RequestMapping("/akka")
@@ -20,22 +18,26 @@ public class AkkaController {
     private AkkaService akkaService;
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("Occurencies", 0);
         return ("home");
     }
 
     @PostMapping("/file")
     public String file (@RequestParam File chosenFile) {
-        String path = "/home/m1ipint/maxime.de-sainte-maresville.etu/Documents/s2/car/tps/tp3/files/" + chosenFile.getName();
-        if (akkaService.openFile(new File(path))) {
-            String line;
-            line = akkaService.readLine();
-            while (line != "" && line != null) {
-                System.out.println(line);
-                line = akkaService.readLine();
-            }
-        }
+        akkaService.splitFile(chosenFile.getName());
         return "redirect:/akka/home";
     }
 
+    @PostMapping("/initialization")
+    public String initialize () {
+        akkaService.initialize(3, 2);
+        return "redirect:/akka/home";
+    }
+
+    @PostMapping("/result")
+    public String result (@RequestParam String word, Model model) {
+        model.addAttribute("Occurencies", akkaService.getOccurencies(word));
+        return "home";
+    }
 }

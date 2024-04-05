@@ -6,9 +6,9 @@
     <body>
         <h1>TP3 - Akka</h1>
         <h2>Initialisation des acteurs Akka</h2>
-        <form action="/akka/initialisation" method="POST">
+        <form action="/akka/initialization" method="POST">
             <div>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Initialiser" />
             </div>
         </form>
         <h2>Fichier à analyser</h2>
@@ -24,12 +24,13 @@
         <h2>Résultat</h2>
         <form action="/akka/result" method="POST">
             <div>
-                <label for="result">Mot : </label>
-                <input type="text" name="result"/>
+                <label for="word">Mot : </label>
+                <input type="text" name="word"/>
             </div>
             <div>
                 <input type="submit" value="Submit" />
             </div>
+            <span><p th:text="'Occurences : ' + ${Occurencies}"></p></span>
         </form>
     </body>
 </html>
